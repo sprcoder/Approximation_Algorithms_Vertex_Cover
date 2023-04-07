@@ -2,10 +2,12 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import integral_vc
 
-class Pricing_VC:
+
+class PricingVC:
     """
       Class to implement Pricing Algorithm for a graph
     """
+
     def vc_pricing(self, graph):
         """
           Method to identify the vertex cover using the pricing algorithm
@@ -30,8 +32,10 @@ class Pricing_VC:
         for e in graph.edges:
             from_vertex = e[0]
             to_vertex = e[1]
-            v1_balance = graph.nodes[from_vertex]["cost"] - vertex_tightness[from_vertex]
-            v2_balance = graph.nodes[to_vertex]["cost"] - vertex_tightness[to_vertex]
+            v1_balance = graph.nodes[from_vertex]["cost"] - \
+                vertex_tightness[from_vertex]
+            v2_balance = graph.nodes[to_vertex]["cost"] - \
+                vertex_tightness[to_vertex]
             # print(f"{from_vertex} --> {v1_balance}")
             # print(f"{to_vertex} --> {v2_balance}")
             if v1_balance == 0 or v2_balance == 0:
@@ -48,14 +52,15 @@ class Pricing_VC:
                 vertex_tightness[to_vertex] += v2_balance
                 vc_result.append(to_vertex)
                 # print(f"Adding vertex {to_vertex}")
-        
+
         # print(vc_result)
         vc_cost = 0
         for i in vc_result:
             vc_cost += graph.nodes[i]["cost"]
-        integral = integral_vc.Integral_VC()
+        integral = integral_vc.IntegralVC()
         opt_cost = integral.vc_integral(graph)
         return round(vc_cost/opt_cost, 3)
+
 
 if __name__ == "__main__":
     pvc = Pricing_VC()

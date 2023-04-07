@@ -36,9 +36,9 @@ if __name__ == "__main__":
     
     Result shows the ratio generated algorithms for each pair of parameters involved.
   """
-  greedy = greedy_vc.VC_Graph()
-  pricing = pricing_vc.Pricing_VC()
-  linear = linear_vc.Linear_VC()
+  greedy = greedy_vc.GreedyVC()
+  pricing = pricing_vc.PricingVC()
+  linear = linear_vc.LinearVC()
 
   # Parameter values
   n_val = [100, 120, 140, 160, 180, 200]
